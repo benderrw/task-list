@@ -10,6 +10,7 @@ type ITask = {
   id: number;
   nameTask: string;
 };
+
 const apiURL = "http://localhost:3000/";
 
 export const TodoTaskRestAPI = () => {
@@ -58,10 +59,10 @@ export const TodoTaskRestAPI = () => {
 
       {!!tasks.length && <div className="line"></div>}
 
-      {tasks.map((todo) => {
+      {tasks.map(({ id, nameTask }) => {
         return (
-          <Card key={todo.id} id={todo.id} deleteTask={deleteTask}>
-            {todo.nameTask}
+          <Card key={id} id={id} deleteTask={deleteTask}>
+            {nameTask}
           </Card>
         );
       })}
