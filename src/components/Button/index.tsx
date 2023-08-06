@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MyContext } from "./../MyContext/index";
 
 const ButtonStyled = styled.button`
   width: 100%;
@@ -11,6 +12,10 @@ const ButtonStyled = styled.button`
   border: 1px solid transparent;
   cursor: pointer;
   transition: 0.25s box-shadow ease;
+
+  &.button-red {
+    background-color: #b12828;
+  }
 
   &:hover {
     box-shadow: 0 1px 3px #666;
@@ -25,7 +30,11 @@ type IButton = {
 };
 
 export const Button = ({ children, onClick }: IButton) => {
-  return <ButtonStyled onClick={() => onClick}>{children}</ButtonStyled>;
+  return (
+    <ButtonStyled className="button" onClick={() => onClick}>
+      {children}
+    </ButtonStyled>
+  );
 };
 
 //----------
@@ -36,5 +45,13 @@ type IButtonSubmit = {
 };
 
 export const ButtonSubmit = ({ children }: IButtonSubmit) => {
-  return <ButtonStyled type="submit">{children}</ButtonStyled>;
+  return (
+    <MyContext.Consumer>
+      {(theme) => (
+        <ButtonStyled className={`button button-${theme}`} type="submit">
+          {children}
+        </ButtonStyled>
+      )}
+    </MyContext.Consumer>
+  );
 };

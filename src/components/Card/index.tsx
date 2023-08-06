@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MyContext } from "../MyContext";
 
 const CardStyled = styled.div`
   display: flex;
@@ -11,6 +12,10 @@ const CardStyled = styled.div`
   border-left: 10px solid #80cb27;
   border-radius: 10px;
   margin-top: 20px;
+
+  &.card-red {
+    border-left-color: #b12828;
+  }
 
   p {
     font-size: 16px;
@@ -37,11 +42,15 @@ type ICard = {
 
 export const Card = ({ id, children, deleteTask }: ICard) => {
   return (
-    <CardStyled className="card">
-      <p>{children}</p>
-      <button className="btn-delete" onClick={() => deleteTask(id)}>
-        X
-      </button>
-    </CardStyled>
+    <MyContext.Consumer>
+      {(theme) => (
+        <CardStyled className={`card card-${theme}`}>
+          <p>{children}</p>
+          <button className="btn-delete" onClick={() => deleteTask(id)}>
+            X
+          </button>
+        </CardStyled>
+      )}
+    </MyContext.Consumer>
   );
 };
