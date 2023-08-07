@@ -13,6 +13,10 @@ const ButtonStyled = styled.button`
   cursor: pointer;
   transition: 0.25s box-shadow ease;
 
+  &.button-orange {
+    background-color: #f5a207;
+  }
+
   &.button-red {
     background-color: #b12828;
   }

@@ -13,6 +13,10 @@ const CardStyled = styled.div`
   border-radius: 10px;
   margin-top: 20px;
 
+  &.card-orange {
+    border-left-color: #f5a207;
+  }
+
   &.card-red {
     border-left-color: #b12828;
   }
